@@ -36,6 +36,8 @@
           <input-field
             :label="'Date of birth'"
             :id="'dateBirth'"
+            :error="errors.dateOfBirth"
+            required
             date
             v-model:value="dateOfBirth"
           />
@@ -96,20 +98,39 @@ export default {
   },
   methods: {
     checkForm() {
-      if (this.firstName && this.lastName) {
-        this.step++;
-        this.errors.firstName = false;
-        this.errors.lastName = false;
-
-        return;
+      switch (this.step) {
+        case 1: {
+          if (this.firstName && this.lastName) {
+            this.step++;
+          }
+          if (!this.firstName) {
+            this.errors.firstName = true;
+          } else {
+            this.errors.firstName = false;
+          }
+          if (!this.lastName) {
+            this.errors.lastName = true;
+          } else {
+            this.errors.lastName = false;
+          }
+          break;
+        }
+        case 2: {
+          this.step++;
+          break;
+        }
+        case 3: {
+          if(this.dateOfBirth) {
+            this.step++;
+            this.errors.dateOfBirth = false;
+          } else {
+            this.errors.dateOfBirth = true;
+          }
+          break;
+        }
+        
       }
-
-      if (!this.firstName) {
-        this.errors.firstName = true;
-      }
-      if (!this.lastName) {
-        this.errors.lastName = true;
-      }
+      
     },
     prevStep() {
       this.step--;

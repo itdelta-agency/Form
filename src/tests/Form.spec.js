@@ -25,26 +25,30 @@ test("Full form complete", async () => {
   expect(dateBirth.element.value).toBe("2022-01-01");
 
   await nextBtn.trigger("click");
-  
-  expect(wrapper.get('#result').isVisible()).toBe(true)
+
+  expect(wrapper.get("#result").isVisible()).toBe(true);
 });
 
 test("Required fields only", async () => {
-    const wrapper = mount(Main);
+  const wrapper = mount(Main);
+
+  const firstName = wrapper.get("#firstName");
+  const lastName = wrapper.get("#lastName");
+  const nextBtn = wrapper.get("#nextStep");
+
+  firstName.setValue("John");
+  lastName.setValue("Wick");
+
+  expect(firstName.element.value).toBe("John");
+  expect(lastName.element.value).toBe("Wick");
+
+  await nextBtn.trigger("click");
+  await nextBtn.trigger("click");
   
-    const firstName = wrapper.get("#firstName");
-    const lastName = wrapper.get("#lastName");
-    const nextBtn = wrapper.get("#nextStep");
+  const dateBirth = wrapper.get("#dateBirth");
+  await dateBirth.setValue("2022-01-01");
+  expect(dateBirth.element.value).toBe("2022-01-01");
   
-    firstName.setValue("John");
-    lastName.setValue("Wick");
-  
-    expect(firstName.element.value).toBe("John");
-    expect(lastName.element.value).toBe("Wick");
-  
-    await nextBtn.trigger("click");
-    await nextBtn.trigger("click");
-    await nextBtn.trigger("click");
-    
-    expect(wrapper.get('#result').isVisible()).toBe(true)
+  await nextBtn.trigger("click");
+  expect(wrapper.get("#result").isVisible()).toBe(true);
 });
