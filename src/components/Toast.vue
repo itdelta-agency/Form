@@ -1,6 +1,6 @@
 <template>
   <div
-    class="alert absolute bottom-6 left-0 right-0 mx-auto justify-center w-1/2 alert-success shadow-lg"
+    class="alert absolute bottom-6 left-0 right-0 mx-auto justify-center w-1/4 alert-success shadow-lg opacity-80"
     v-if="isShow"
   >
     <div>
@@ -35,3 +35,8 @@ export default {
   },
 };
 </script>
+<style>
+  .alert {
+    border-radius: 0;
+  }
+</style>

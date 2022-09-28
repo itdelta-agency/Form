@@ -56,7 +56,7 @@
         <button
           type="button"
           class="btn btn-primary"
-          v-if="step !== 1"
+          v-if="step !== 1 && step !== 4"
           @click="prevStep()"
         >
           Prev
