@@ -8,6 +8,7 @@
       :type="[date ? 'date' : 'text']"
       placeholder="Type here"
       :required="required"
+      :id="id"
       v-model.trim="filteredValue"
       class="input input-bordered w-full max-w-xs"
       :class="{ 'input-error': error }"
@@ -42,6 +43,9 @@ export default {
     value: {
       type: String,
     },
+    id: {
+      type: String
+    }
   },
   computed: {
     filteredValue: {
